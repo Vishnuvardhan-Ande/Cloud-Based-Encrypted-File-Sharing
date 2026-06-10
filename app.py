@@ -123,14 +123,6 @@ def share(file_id):
 
         expiry = datetime.utcnow() + timedelta(days=1)
 
-        print("FILE ID RECEIVED:", file_id)
-
-        supabase.table("files").update({
-            "share_token": token,
-            "share_password_hash": generate_password_hash(password),
-            "share_expiry": expiry.isoformat()
-        }).eq("id", file_id).execute()
-
         result = supabase.table("files").update({
             "share_token": token,
             "share_password_hash": generate_password_hash(password),
@@ -141,9 +133,14 @@ def share(file_id):
 
         share_link = request.host_url + "shared/" + token
 
+        return render_template(
+            "share_success.html",
+            share_link=share_link
+        )
+
     return render_template(
-        "share_success.html",
-        share_link=share_link
+        "share.html",
+        file_id=file_id
     )
 
 @app.route("/shared/<token>", methods=["GET", "POST"])
