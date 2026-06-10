@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card">
+
+  <h2>Create Secure Share Link</h2>
+
+  <form method="POST">
+
+    <label>
+      Share Password
+    </label>
+
+    <input
+      type="password"
+      name="password"
+      required
+    >
+
+    <button type="submit">
+      Generate Link
+    </button>
+
+  </form>
+
+</div>
+
+{% endblock %}

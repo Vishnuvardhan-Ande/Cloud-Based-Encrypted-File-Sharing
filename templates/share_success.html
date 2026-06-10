@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card">
+
+    <h2>Share Link Generated</h2>
+
+    <input
+        type="text"
+        id="shareLink"
+        value="{{ share_link }}"
+        readonly
+    >
+
+    <button onclick="copyLink()">
+        Copy Link
+    </button>
+
+    <p id="status"></p>
+
+</div>
+
+<script>
+function copyLink() {
+
+    const link =
+        document.getElementById("shareLink");
+
+    navigator.clipboard.writeText(
+        link.value
+    );
+
+    document.getElementById(
+        "status"
+    ).innerText =
+        "✅ Link copied!";
+}
+
+window.onload = function() {
+    copyLink();
+}
+</script>
+
+{% endblock %}
