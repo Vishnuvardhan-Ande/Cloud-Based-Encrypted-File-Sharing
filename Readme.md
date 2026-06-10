@@ -111,39 +111,4 @@ Application deployed using:
 * Render
 * Supabase
 
----
 
-## Future Enhancements
-
-* End-to-End Encryption
-* File Versioning
-* Multi-Factor Authentication
-* Email Sharing
-* Access Logs
-* Audit Trails
-* File Preview Support
-* User Profile Management
-
----
-
-## Learning Outcomes
-
-This project demonstrates:
-
-* Cloud Storage Integration
-* Database Operations
-* Web Application Deployment
-* Secure File Sharing
-* Authentication and Authorization
-* Flask Development
-* Cloud Computing Concepts
-
----
-
-## Author
-
-Vishnu Vardhan
-
-B.Tech Student
-
-Cloud Computing Project
