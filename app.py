@@ -2,7 +2,7 @@ import os
 import secrets
 from flask import send_file
 from io import BytesIO
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 from werkzeug.security import (
     generate_password_hash,
@@ -121,7 +121,7 @@ def share(file_id):
 
         token = secrets.token_urlsafe(32)
 
-        expiry = datetime.utcnow() + timedelta(days=1)
+        expiry = datetime.now(timezone.utc) + timedelta(days=1)
 
         result = supabase.table("files").update({
             "share_token": token,
@@ -155,6 +155,11 @@ def shared(token):
         return "Invalid Share Link"
 
     file = result.data[0]
+
+    expiry = datetime.fromisoformat(file["share_expiry"])
+
+    if datetime.now(timezone.utc) > expiry:
+        return "Share Link Expired"
 
     if request.method == "POST":
 
